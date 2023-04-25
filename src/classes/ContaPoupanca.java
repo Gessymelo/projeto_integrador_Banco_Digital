@@ -3,6 +3,7 @@ package classes;
 import classesabstratas.Conta;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ContaPoupanca extends Conta {
 
@@ -13,6 +14,24 @@ public class ContaPoupanca extends Conta {
 
     public ContaPoupanca(int id, int numAgenciaBancaria, int numConta, Cliente cliente, Double saldo) {
         super(id, numAgenciaBancaria, numConta, cliente, saldo);
+    }
+
+    public void sacar(double valor) {
+        if (valor > 0 && valor <= this.getSaldo()) {
+            this.setSaldo(this.getSaldo() - valor);
+
+            Registro novo = new Registro(valor, LocalDateTime.now(), "Saque");
+            this.getExtrato().add(novo);
+        } else {
+            System.out.println("Por favor, digite um valor positivo e/ou menor ou igual ao saldo para sacar.");
+        }
+    }
+    protected void retirarTransferencia(double valor) {
+        if (valor > 0 && valor <= this.getSaldo()) {
+            this.setSaldo(this.getSaldo() - valor);
+        } else {
+            System.out.println("Por favor, digite um valor positivo e/ou menor ou igual ao saldo para sacar.");
+        }
     }
 
     public void renderMensal(){

@@ -2,6 +2,8 @@ package classes;
 
 import classesabstratas.Conta;
 
+import java.time.LocalDateTime;
+
 public class ContaCorrente extends Conta {
     private double valorCobrancaChequeEspecial;
     private double limiteChequeEspecial;
@@ -17,6 +19,22 @@ public class ContaCorrente extends Conta {
     }
 
     public void sacar(double valor){
+        double diferencaValorChequeEspecial = this.getSaldo() - valor;
+        if(valor > 0 && diferencaValorChequeEspecial >= - (this.getLimiteChequeEspecial())){
+            this.setSaldo(this.getSaldo() - valor);
+
+            Registro novo = new Registro(valor, LocalDateTime.now(), "Saque");
+            this.getExtrato().add(novo);
+
+            if(this.getSaldo() < 0) {
+                this.cobrarJurosChequeEspecial();
+            }
+        }else{
+            System.out.println("Por favor, digite um valor positivo para sacar e/ou verifique seu limite no cheque especial.");
+        }
+    }
+
+    protected void retirarTransferencia(double valor){
         double diferencaValorChequeEspecial = this.getSaldo() - valor;
         if(valor > 0 && diferencaValorChequeEspecial >= - (this.getLimiteChequeEspecial())){
             this.setSaldo(this.getSaldo() - valor);
