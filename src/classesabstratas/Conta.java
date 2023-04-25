@@ -59,7 +59,7 @@ public abstract class Conta {
         if(valor > 0){
             this.setSaldo(this.getSaldo() + valor);
         }else{
-            System.out.println("Por favor, digite um valor positivo para depositar.");
+            System.out.println("Por favor, digite um valor positivo para transferir.");
         }
     }
 

@@ -30,7 +30,7 @@ public class ContaPoupanca extends Conta {
         if (valor > 0 && valor <= this.getSaldo()) {
             this.setSaldo(this.getSaldo() - valor);
         } else {
-            System.out.println("Por favor, digite um valor positivo e/ou menor ou igual ao saldo para sacar.");
+            System.out.println("Por favor, digite um valor positivo e/ou menor ou igual ao saldo para transferir.");
         }
     }
 

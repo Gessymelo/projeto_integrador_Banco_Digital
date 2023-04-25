@@ -43,7 +43,7 @@ public class ContaCorrente extends Conta {
                 this.cobrarJurosChequeEspecial();
             }
         }else{
-            System.out.println("Por favor, digite um valor positivo para sacar e/ou verifique seu limite no cheque especial.");
+            System.out.println("Por favor, digite um valor positivo para transferir e/ou verifique seu limite no cheque especial.");
         }
     }
 
