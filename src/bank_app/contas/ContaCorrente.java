@@ -47,14 +47,18 @@ public class ContaCorrente extends Conta {
         }
     }
 
-    public void consultarLimiteChequeEspecial(){
-        System.out.printf("O seu limite de cheque especial é: R$%.2f", this.getLimiteChequeEspecial());
-    }
-
     public void cobrarJurosChequeEspecial(){
         if(this.getSaldo() < 0){
             this.setValorCobrancaChequeEspecial(Math.abs(this.getSaldo())*1.5);
         }
+    }
+
+    public void consultarLimiteChequeEspecial(){
+        System.out.printf("O seu limite de cheque especial é: R$%.2f", this.getLimiteChequeEspecial());
+    }
+
+    public void alterarLimiteChequeEspecial(Double valor){
+        // TODO: SEGUNDA UNIDADE
     }
 
     public double getValorCobrancaChequeEspecial() {

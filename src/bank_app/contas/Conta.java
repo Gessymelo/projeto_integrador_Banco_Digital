@@ -16,7 +16,6 @@ public abstract class Conta {
     private int numConta;
     private Cliente cliente;
     private Double saldo;
-
     private List<Registro> extrato;
 
     public Conta(int id, int numAgenciaBancaria, int numConta, Cliente cliente) {
@@ -64,7 +63,6 @@ public abstract class Conta {
 
     protected void transferenciaRetirar(double valor){
     }
-
 
     public void transferir(double valor, int numAgenciaBancariaDestino, int numContaDestino){
         AgenciaBancaria agenciaBancariaDestino = CentralAgencias.encontrarAgenciaBancaria(numAgenciaBancariaDestino);

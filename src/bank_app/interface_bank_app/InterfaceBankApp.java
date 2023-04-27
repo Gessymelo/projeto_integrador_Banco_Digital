@@ -4,7 +4,6 @@ import bank_app.agencia.AgenciaBancaria;
 import bank_app.agencia.CentralAgencias;
 import utils.Formatador;
 
-import java.text.Normalizer;
 import java.util.Scanner;
 
 public class InterfaceBankApp {
@@ -36,7 +35,7 @@ public class InterfaceBankApp {
         InterfaceBankApp.exibirBemVindoArea("Criar Conta");
 
         System.out.println("-------- Agências Bancárias disponíveis -------");
-        CentralAgencias.exibirTodasAgenciasDisponiveis();
+        CentralAgencias.exibirTodasAgenciasBancariasDisponiveis();
         System.out.println("-----------------------------------------------");
         System.out.println("Para começar, o número da agência escolhida: ");
         numAgenciaBancariaEscolhida = s.nextInt();

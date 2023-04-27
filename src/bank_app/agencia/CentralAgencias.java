@@ -32,7 +32,7 @@ public class CentralAgencias {
         return null;
     }
 
-    public static void exibirTodasAgenciasDisponiveis(){
+    public static void exibirTodasAgenciasBancariasDisponiveis(){
         Iterator<AgenciaBancaria> iterator = agencias.iterator();
         while(iterator.hasNext()){
             AgenciaBancaria next = iterator.next();

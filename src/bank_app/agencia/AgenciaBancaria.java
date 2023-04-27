@@ -11,18 +11,23 @@ import java.util.Iterator;
 import java.util.List;
 
 public class AgenciaBancaria {
+
     private int numAgenciaBancaria;
     private int qtdContas;
     private int qtdClientes;
-    private List<Conta> contas;
     private List<Cliente> clientes;
+    private List<Conta> contas;
+    private List<ContaPoupanca> contasPoupancas;
+    private List<ContaCorrente> contasCorrentes;
 
     public AgenciaBancaria(int numAgencia){
         this.setNumAgencia(numAgencia);
         this.setQtdContas(0);
         this.setQtdClientes(0);
-        contas = new ArrayList<>();
         clientes = new ArrayList<>();
+        contas = new ArrayList<>();
+        contasPoupancas = new ArrayList<>();
+        contasCorrentes = new ArrayList<>();
     }
 
     public void abrirContaPoupanca(int numConta, Cliente novoCliente, double saldo){
@@ -40,6 +45,7 @@ public class AgenciaBancaria {
 
         if(nova != null) {
             contas.add(nova);
+            contasPoupancas.add(nova);
         }
     }
 
@@ -58,6 +64,7 @@ public class AgenciaBancaria {
 
         if(nova != null) {
             contas.add(nova);
+            contasCorrentes.add(nova);
         }
     }
 
@@ -90,14 +97,13 @@ public class AgenciaBancaria {
         return null;
     }
 
-    public void removerClientePorIndex(int id){
-//        Iterator<Cliente> iterator = clientes.iterator();
-//        while(iterator.hasNext()){
-//            Cliente next = iterator.next();
-//            if((next.getId() - id) == 0){
-//                iterator.remove();
-//            }
-//        }
+
+    public void desativarClientePorCpf(String cpf){
+        // TODO: SEGUNDA UNIDADE
+    }
+
+    public void desativarClientePorIndex(int id){
+        // TODO: SEGUNDA UNIDADE
     }
 
     public Conta encontrarContaPorNumConta(int numConta){
@@ -122,14 +128,20 @@ public class AgenciaBancaria {
         return null;
     }
 
-    public void removerContaPorIndex(int id){
-        Iterator<Conta> iterator = contas.iterator();
-        while(iterator.hasNext()){
-            Conta next = iterator.next();
-            if((next.getId() - id) == 0){
-                iterator.remove();
-            }
-        }
+    public void desativarContaPorNumConta(int numConta){
+        // TODO: SEGUNDA UNIDADE
+    }
+
+    public void desativarContaPorIndex(int id){
+        // TODO: SEGUNDA UNIDADE
+    }
+
+    public void listarTodasContas(){
+        // TODO: SEGUNDA UNIDADE
+    }
+
+    public void listarTodosclientes(){
+        // TODO: SEGUNDA UNIDADE
     }
 
     public int getNumAgencia() {
