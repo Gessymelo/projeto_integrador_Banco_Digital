@@ -1,7 +1,9 @@
-package classes;
+package bank_app.agencia;
 
-import classesabstratas.Conta;
-import classesabstratas.Pessoa;
+import bank_app.cliente.Cliente;
+import bank_app.contas.ContaCorrente;
+import bank_app.contas.ContaPoupanca;
+import bank_app.contas.Conta;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -89,13 +91,13 @@ public class AgenciaBancaria {
     }
 
     public void removerClientePorIndex(int id){
-        Iterator<Cliente> iterator = clientes.iterator();
-        while(iterator.hasNext()){
-            Cliente next = iterator.next();
-            if((next.getId() - id) == 0){
-                iterator.remove();
-            }
-        }
+//        Iterator<Cliente> iterator = clientes.iterator();
+//        while(iterator.hasNext()){
+//            Cliente next = iterator.next();
+//            if((next.getId() - id) == 0){
+//                iterator.remove();
+//            }
+//        }
     }
 
     public Conta encontrarContaPorNumConta(int numConta){

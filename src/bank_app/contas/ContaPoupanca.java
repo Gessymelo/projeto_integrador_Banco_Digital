@@ -1,6 +1,6 @@
-package classes;
+package bank_app.contas;
 
-import classesabstratas.Conta;
+import bank_app.cliente.Cliente;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,7 +26,7 @@ public class ContaPoupanca extends Conta {
             System.out.println("Por favor, digite um valor positivo e/ou menor ou igual ao saldo para sacar.");
         }
     }
-    protected void retirarTransferencia(double valor) {
+    protected void transferenciaRetirar(double valor) {
         if (valor > 0 && valor <= this.getSaldo()) {
             this.setSaldo(this.getSaldo() - valor);
         } else {

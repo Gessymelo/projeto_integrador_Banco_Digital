@@ -1,4 +1,4 @@
-package classes;
+package bank_app.agencia;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,14 +21,22 @@ public class CentralAgencias {
         agencias.add(nova);
     }
 
-    public static AgenciaBancaria encontrarAgencia(int numAgencia){
+    public static AgenciaBancaria encontrarAgenciaBancaria(int numAgenciaBancaria){
         Iterator<AgenciaBancaria> iterator = agencias.iterator();
         while(iterator.hasNext()){
             AgenciaBancaria next = iterator.next();
-            if((next.getNumAgencia() - numAgencia) == 0){
+            if((next.getNumAgencia() - numAgenciaBancaria) == 0){
                 return next;
             }
         }
         return null;
+    }
+
+    public static void exibirTodasAgenciasDisponiveis(){
+        Iterator<AgenciaBancaria> iterator = agencias.iterator();
+        while(iterator.hasNext()){
+            AgenciaBancaria next = iterator.next();
+            System.out.println("Agência Bancária: " + next.getNumAgencia());
+        }
     }
 }

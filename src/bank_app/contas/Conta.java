@@ -1,9 +1,8 @@
-package classesabstratas;
+package bank_app.contas;
 
-import classes.AgenciaBancaria;
-import classes.CentralAgencias;
-import classes.Cliente;
-import classes.Registro;
+import bank_app.agencia.AgenciaBancaria;
+import bank_app.agencia.CentralAgencias;
+import bank_app.cliente.Cliente;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public abstract class Conta {
     public void sacar(double valor) {
     }
 
-    private void receberTransferencia(double valor){
+    private void transferenciaReceber(double valor){
         if(valor > 0){
             this.setSaldo(this.getSaldo() + valor);
         }else{
@@ -63,24 +62,23 @@ public abstract class Conta {
         }
     }
 
-    protected void retirarTransferencia(double valor){
-
+    protected void transferenciaRetirar(double valor){
     }
 
 
     public void transferir(double valor, int numAgenciaBancariaDestino, int numContaDestino){
-        AgenciaBancaria agenciaBancariaDestino = CentralAgencias.encontrarAgencia(numAgenciaBancariaDestino);
+        AgenciaBancaria agenciaBancariaDestino = CentralAgencias.encontrarAgenciaBancaria(numAgenciaBancariaDestino);
         Conta contaDestino = agenciaBancariaDestino.encontrarContaPorNumConta(numContaDestino);
 
-        this.retirarTransferencia(valor);
+        this.transferenciaRetirar(valor);
 
         Registro novoOrigem = new Registro(valor, LocalDateTime.now(), "Transferência enviada");
         this.getExtrato().add(novoOrigem);
 
-        contaDestino.receberTransferencia(valor);
+        contaDestino.transferenciaReceber(valor);
 
         Registro novoDestino = new Registro(valor, LocalDateTime.now(), "Transferência recebida");
-        this.getExtrato().add(novoDestino);
+        contaDestino.getExtrato().add(novoDestino);
 
     }
 

@@ -1,6 +1,6 @@
-package classes;
+package bank_app.contas;
 
-import classesabstratas.Conta;
+import bank_app.cliente.Cliente;
 
 import java.time.LocalDateTime;
 
@@ -34,7 +34,7 @@ public class ContaCorrente extends Conta {
         }
     }
 
-    protected void retirarTransferencia(double valor){
+    protected void transferenciaRetirar(double valor){
         double diferencaValorChequeEspecial = this.getSaldo() - valor;
         if(valor > 0 && diferencaValorChequeEspecial >= - (this.getLimiteChequeEspecial())){
             this.setSaldo(this.getSaldo() - valor);
@@ -45,6 +45,10 @@ public class ContaCorrente extends Conta {
         }else{
             System.out.println("Por favor, digite um valor positivo para transferir e/ou verifique seu limite no cheque especial.");
         }
+    }
+
+    public void consultarLimiteChequeEspecial(){
+        System.out.printf("O seu limite de cheque especial é: R$%.2f", this.getLimiteChequeEspecial());
     }
 
     public void cobrarJurosChequeEspecial(){

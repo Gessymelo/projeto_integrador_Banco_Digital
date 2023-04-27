@@ -1,6 +1,6 @@
-package classes;
+package bank_app.cliente;
 
-import classesabstratas.Pessoa;
+import bank_app.classes_abstratas_gerais.Pessoa;
 
 import java.time.LocalDate;
 

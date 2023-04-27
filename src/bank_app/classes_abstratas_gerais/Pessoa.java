@@ -1,4 +1,4 @@
-package classesabstratas;
+package bank_app.classes_abstratas_gerais;
 
 import java.time.LocalDate;
 

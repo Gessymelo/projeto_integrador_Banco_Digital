@@ -1,15 +1,18 @@
-import classes.AgenciaBancaria;
-import classes.CentralAgencias;
-import classes.ContaCorrente;
-import classes.ContaPoupanca;
-import classesabstratas.Conta;
+import bank_app.agencia.AgenciaBancaria;
+import bank_app.agencia.CentralAgencias;
+import bank_app.contas.ContaCorrente;
+import bank_app.contas.ContaPoupanca;
+import bank_app.interface_bank_app.InterfaceBankApp;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        char resp = 'N';
+
+        int operacao;
 
         CentralAgencias centralAgencias = new CentralAgencias();
 
@@ -17,17 +20,60 @@ public class Main {
         AgenciaBancaria agenciaBancaria2 = new AgenciaBancaria(2001);
 
         centralAgencias.adicionarAgenciaBancaria(agenciaBancaria1);
-        centralAgencias.adicionarAgenciaBancaria(agenciaBancaria2);
+        CentralAgencias.adicionarAgenciaBancaria(agenciaBancaria2);
 
-        agenciaBancaria1.adicionarCliente("João Pessoa", "12345678901", "jp@gmail.com", LocalDate.of(2001, 5, 02));
-        agenciaBancaria1.adicionarCliente("Tiradentes", "12345678902", "tira_dentes@gmail.com", LocalDate.of(1995, 6, 3));
-        agenciaBancaria2.adicionarCliente("Getúlio Vargas", "12345678903", "gegegas@gmail.com", LocalDate.of(1998, 8, 17));
-        agenciaBancaria2.adicionarCliente("Maria Antonieta", "12345678904", "toniamaria@gmail.com", LocalDate.of(1974, 10, 31));
+        do{
+            InterfaceBankApp.exibirCabecalho();
+            InterfaceBankApp.exibirMenu();
+            operacao = s.nextInt();
 
-        agenciaBancaria1.abrirContaPoupanca(1101,agenciaBancaria1.encontrarClientePorIndex(1),2000);
-        agenciaBancaria1.abrirContaCorrente(1102,agenciaBancaria1.encontrarClientePorIndex(2),3000, 1000);
-        agenciaBancaria2.abrirContaPoupanca(2101,agenciaBancaria2.encontrarClientePorIndex(1),2000);
-        agenciaBancaria2.abrirContaCorrente(2102,agenciaBancaria2.encontrarClientePorIndex(2),3000, 1000);
+            switch (operacao){
+                case 1:
+                    InterfaceBankApp.criarConta();
+                    break;
+                case 2:
+                    InterfaceBankApp.depositar();
+                    break;
+                case 3:
+                    InterfaceBankApp.sacar();
+                    break;
+                case 4:
+                    InterfaceBankApp.transferir();
+                    break;
+                case 5:
+                    InterfaceBankApp.consultarExtrato();
+                    break;
+                case 6:
+                    //Administrador
+                case 7:
+                    resp = InterfaceBankApp.confirmarSaida();
+                    break;
+                default:
+                    System.out.println("Essa operação " + operacao +" não existe. Por favor, digite um opção válida.");
+            }
+        }while(resp != 'S');
+
+
+//
+//        CentralAgencias centralAgencias = new CentralAgencias();
+//
+//        AgenciaBancaria agenciaBancaria1 = new AgenciaBancaria(1001);
+//        AgenciaBancaria agenciaBancaria2 = new AgenciaBancaria(2001);
+//
+//        centralAgencias.adicionarAgenciaBancaria(agenciaBancaria1);
+//        centralAgencias.adicionarAgenciaBancaria(agenciaBancaria2);
+//
+//        agenciaBancaria1.adicionarCliente("João Pessoa", "12345678901", "jp@gmail.com", LocalDate.of(2001, 5, 26));
+//        agenciaBancaria1.adicionarCliente("Tiradentes", "12345678902", "tira_dentes@gmail.com", LocalDate.of(1995, 6, 3));
+//        agenciaBancaria2.adicionarCliente("Getúlio Vargas", "12345678903", "gegegas@gmail.com", LocalDate.of(1998, 8, 17));
+//        agenciaBancaria2.adicionarCliente("Maria Antonieta", "12345678904", "toniamaria@gmail.com", LocalDate.of(1974, 10, 31));
+//
+//        agenciaBancaria1.abrirContaPoupanca(1101,agenciaBancaria1.encontrarClientePorIndex(1),2000);
+//        agenciaBancaria1.abrirContaCorrente(1102,agenciaBancaria1.encontrarClientePorIndex(2),3000, 1000);
+//        agenciaBancaria2.abrirContaPoupanca(2101,agenciaBancaria2.encontrarClientePorIndex(1),2000);
+//        agenciaBancaria2.abrirContaCorrente(2102,agenciaBancaria2.encontrarClientePorIndex(2),3000, 0);
+
+
 
 //        CÓDIGO PARA TESTAR SAQUE E DEPOSITO EM UM CONTA (PODEM FICAR À VONTADE PRA EXPLORAR)
 //
