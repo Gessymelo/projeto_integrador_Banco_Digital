@@ -2,9 +2,11 @@ package bank_app.agencia;
 
 import bank_app.cliente.Cliente;
 import bank_app.contas.ContaCorrente;
+import bank_app.contas.ContaInvestimento;
 import bank_app.contas.ContaPoupanca;
 import bank_app.contas.Conta;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,6 +21,8 @@ public class AgenciaBancaria {
     private List<Conta> contas;
     private List<ContaPoupanca> contasPoupancas;
     private List<ContaCorrente> contasCorrentes;
+    private List<ContaInvestimento> contasInvestimentos;
+
 
     public AgenciaBancaria(int numAgencia){
         this.setNumAgencia(numAgencia);
@@ -28,6 +32,7 @@ public class AgenciaBancaria {
         contas = new ArrayList<>();
         contasPoupancas = new ArrayList<>();
         contasCorrentes = new ArrayList<>();
+        contasInvestimentos = new ArrayList<>();
     }
 
     public void abrirContaPoupanca(int numConta, Cliente novoCliente, double saldo){
@@ -67,6 +72,26 @@ public class AgenciaBancaria {
             contasCorrentes.add(nova);
         }
     }
+
+    public void abrirContaInvestimento(int numConta, Cliente novoCliente, double saldo){
+        this.setQtdContas(this.getQtdContas()+1);
+        int idNovaConta = this.getQtdContas();
+        int numAgenciaBancaria = this.getNumAgencia();
+
+        ContaInvestimento nova;
+
+        if (saldo > 0){
+            nova = new ContaInvestimento(idNovaConta, numAgenciaBancaria, numConta, novoCliente, saldo);
+        } else {
+            nova = new ContaInvestimento(idNovaConta, numAgenciaBancaria, numConta, novoCliente);
+        }
+
+        if(nova != null) {
+            contas.add(nova);
+            contasInvestimentos.add(nova);
+        }
+    }
+
 
     public void adicionarCliente(String nome, String cpf, String email, LocalDate dataNascimento){
         this.setQtdClientes(this.getQtdClientes()+1);

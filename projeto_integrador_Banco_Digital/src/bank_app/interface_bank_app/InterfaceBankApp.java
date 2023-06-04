@@ -2,18 +2,23 @@ package bank_app.interface_bank_app;
 
 import bank_app.agencia.AgenciaBancaria;
 import bank_app.agencia.CentralAgencias;
+import bank_app.cliente.Cliente;
+import bank_app.contas.Conta;
+import bank_app.contas.ContaInvestimento;
+import bank_app.contas.ContaPoupanca;
 import utils.Formatador;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class InterfaceBankApp {
 
     static Scanner s = new Scanner(System.in);
     public static void exibirCabecalho(){
-        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
         System.out.println("------------------- JavaBank App -------------------");
         System.out.println("\t Um banco para todas suas necessidades");
-        System.out.println("-----------------------------------------------");
+        System.out.println("----------------------------------------------------");
     }
     public static void exibirMenu(){
         System.out.println("[1] Criar Conta");
@@ -21,8 +26,9 @@ public class InterfaceBankApp {
         System.out.println("[3] Sacar");
         System.out.println("[4] Transferir");
         System.out.println("[5] Consultar extrato");
-        System.out.println("[6] Acesso Restrito ao Administrador");
-        System.out.println("[7] Sair do sistema");
+        System.out.println("[6] Rendimentos");
+        System.out.println("[7] Acesso Restrito ao Administrador");
+        System.out.println("[8] Sair do sistema");
         System.out.printf("Digite umas das opções acima: ");
     }
 
@@ -40,7 +46,7 @@ public class InterfaceBankApp {
         System.out.println("Para começar, o número da agência escolhida: ");
         numAgenciaBancariaEscolhida = s.nextInt();
 
-        System.out.println("Agora, selecione o tipo de conta: \n[1] POUPANÇA ou [2] CORRENTE");
+        System.out.println("Agora, selecione o tipo de conta: \n[1] POUPANÇA ou [2] CORRENTE ou [3] INVESTIMENTO");
         System.out.printf("Opção: ");
         tipoConta = s.nextInt();
 
@@ -63,7 +69,7 @@ public class InterfaceBankApp {
 
         if(tipoConta == 1){
             agenciaBancariaEscolhida.abrirContaPoupanca(numConta,
-                    agenciaBancariaEscolhida.encontrarClientePorIndex(agenciaBancariaEscolhida.getQtdContas()), 0);
+                    agenciaBancariaEscolhida.encontrarClientePorIndex(agenciaBancariaEscolhida.getQtdClientes()), 0);
         } else if(tipoConta == 2){
             System.out.println("Observação: Você escolheu uma conta corrente.");
             System.out.println("Por causa disso, digite o limite do Cheque Especial: ");
@@ -71,6 +77,9 @@ public class InterfaceBankApp {
 
             agenciaBancariaEscolhida.abrirContaCorrente(numConta,
                     agenciaBancariaEscolhida.encontrarClientePorIndex(agenciaBancariaEscolhida.getQtdClientes()), 0 , limiteChequeEspecial);
+        } else if(tipoConta == 3){
+            agenciaBancariaEscolhida.abrirContaInvestimento(numConta,
+                    agenciaBancariaEscolhida.encontrarClientePorIndex(agenciaBancariaEscolhida.getQtdClientes()), 0);
         }
 
         System.out.println("Conta feita com sucesso. Obrigado! :)");
@@ -156,6 +165,39 @@ public class InterfaceBankApp {
                 .consultarExtrato();
     }
 
+    public static void render(){
+        int numAgenciaBancaria, numConta, tipoConta, tipoRendimentoCI;
+
+        InterfaceBankApp.exibirCabecalho();
+        InterfaceBankApp.exibirBemVindoArea("Rendimentos de Conta");
+
+        System.out.println("Digite a agência da conta:");
+        numAgenciaBancaria = s.nextInt();
+        System.out.println("Digite o número da conta:");
+        numConta = s.nextInt();
+
+        System.out.println("Digite o tipo de conta: \n[1] Poupança\n[2] Investimento");
+        tipoConta = s.nextInt();
+
+        if(tipoConta == 1){
+            ContaPoupanca contaPoupanca = (ContaPoupanca) CentralAgencias.encontrarAgenciaBancaria(numAgenciaBancaria)
+                    .encontrarContaPorNumConta(numConta);
+            contaPoupanca.renderMensal();
+        } else if(tipoConta == 2){
+            ContaInvestimento contaInvestimento = (ContaInvestimento) CentralAgencias.encontrarAgenciaBancaria(numAgenciaBancaria)
+                    .encontrarContaPorNumConta(numConta);
+
+            System.out.println("[1] Render fixamente - Taxa 10% \n[2] Render variemente - Taxa de 0% até 25%");
+            System.out.println("Escolha uma das opções acima: ");
+            tipoRendimentoCI = s.nextInt();
+
+            if(tipoRendimentoCI == 1){
+                contaInvestimento.renderFixo();
+            } else if(tipoRendimentoCI == 2){
+                contaInvestimento.renderVariavel();
+            }
+        }
+    }
 
     public static char confirmarSaida(){
         char resp = '0';

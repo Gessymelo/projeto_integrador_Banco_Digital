@@ -1,5 +1,6 @@
 import bank_app.agencia.AgenciaBancaria;
 import bank_app.agencia.CentralAgencias;
+import bank_app.contas.Conta;
 import bank_app.contas.ContaCorrente;
 import bank_app.contas.ContaPoupanca;
 import bank_app.interface_bank_app.InterfaceBankApp;
@@ -44,8 +45,11 @@ public class Main {
                     InterfaceBankApp.consultarExtrato();
                     break;
                 case 6:
-                    //Administrador
+                    InterfaceBankApp.render();
+                    break;
                 case 7:
+                    //Administrador
+                case 8:
                     resp = InterfaceBankApp.confirmarSaida();
                     break;
                 default:
@@ -68,11 +72,18 @@ public class Main {
 //        agenciaBancaria2.adicionarCliente("Getúlio Vargas", "12345678903", "gegegas@gmail.com", LocalDate.of(1998, 8, 17));
 //        agenciaBancaria2.adicionarCliente("Maria Antonieta", "12345678904", "toniamaria@gmail.com", LocalDate.of(1974, 10, 31));
 //
-//        agenciaBancaria1.abrirContaPoupanca(1101,agenciaBancaria1.encontrarClientePorIndex(1),2000);
-//        agenciaBancaria1.abrirContaCorrente(1102,agenciaBancaria1.encontrarClientePorIndex(2),3000, 1000);
+//        agenciaBancaria1.abrirContaPoupanca(1101,agenciaBancaria1.encontrarClientePorIndex(2),2000);
+//        agenciaBancaria1.abrirContaCorrente(1102,agenciaBancaria1.encontrarClientePorIndex(1),3000, 1000);
 //        agenciaBancaria2.abrirContaPoupanca(2101,agenciaBancaria2.encontrarClientePorIndex(1),2000);
 //        agenciaBancaria2.abrirContaCorrente(2102,agenciaBancaria2.encontrarClientePorIndex(2),3000, 0);
-
+//
+//        ContaPoupanca testRend = (ContaPoupanca) agenciaBancaria1.encontrarContaPorNumConta(1101);
+//        System.out.println(testRend.getSaldo());
+//        testRend.consultarExtrato();
+//        testRend.renderMensal();
+//        System.out.println(testRend.getSaldo());
+//        testRend.consultarExtrato();
+//
 
 
 //        CÓDIGO PARA TESTAR SAQUE E DEPOSITO EM UM CONTA (PODEM FICAR À VONTADE PRA EXPLORAR)

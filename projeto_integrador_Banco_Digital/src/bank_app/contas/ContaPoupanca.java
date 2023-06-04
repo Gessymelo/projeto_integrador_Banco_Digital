@@ -16,30 +16,14 @@ public class ContaPoupanca extends Conta {
         super(id, numAgenciaBancaria, numConta, cliente, saldo);
     }
 
-    public void sacar(double valor) {
-        if (valor > 0 && valor <= this.getSaldo()) {
-            this.setSaldo(this.getSaldo() - valor);
-
-            Registro novo = new Registro(valor, LocalDateTime.now(), "Saque");
-            this.getExtrato().add(novo);
-        } else {
-            System.out.println("Por favor, digite um valor positivo e/ou menor ou igual ao saldo para sacar.");
-        }
-    }
-    protected void transferenciaRetirar(double valor) {
-        if (valor > 0 && valor <= this.getSaldo()) {
-            this.setSaldo(this.getSaldo() - valor);
-        } else {
-            System.out.println("Por favor, digite um valor positivo e/ou menor ou igual ao saldo para transferir.");
-        }
-    }
-
     public void renderMensal(){
         int diaDoMesAniversario = this.getCliente().getDataNascimento().getDayOfMonth();
         int diaDeHoje = LocalDate.now().getDayOfMonth();
         if((diaDoMesAniversario - diaDeHoje) == 0){
-            this.setValorGeradoJuros(this.getSaldo()*0.005);
-            this.setSaldo(this.getSaldo()*1.005);
+            this.setValorGeradoJuros(this.getSaldo()*0.02);
+            this.setSaldo(this.getSaldo()*1.02);
+            Registro novo = new Registro(this.getValorGeradoJuros(), LocalDateTime.now(), "Rendimento Mensal");
+            this.getExtrato().add(novo);
             System.out.printf("Dia de seu aniversário! Saldo atualizado com os juros: R$%.2f\n", this.getSaldo());
         } else{
             System.out.println("Ooops... Não é dia de seu aniversário.");

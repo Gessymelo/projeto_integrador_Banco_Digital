@@ -51,6 +51,14 @@ public abstract class Conta {
     }
 
     public void sacar(double valor) {
+        if (valor > 0 && valor <= this.getSaldo()) {
+            this.setSaldo(this.getSaldo() - valor);
+
+            Registro novo = new Registro(valor, LocalDateTime.now(), "Saque");
+            this.getExtrato().add(novo);
+        } else {
+            System.out.println("Por favor, digite um valor positivo e/ou menor ou igual ao saldo para sacar.");
+        }
     }
 
     private void transferenciaReceber(double valor){
@@ -61,7 +69,12 @@ public abstract class Conta {
         }
     }
 
-    protected void transferenciaRetirar(double valor){
+    protected void transferenciaRetirar(double valor) {
+        if (valor > 0 && valor <= this.getSaldo()) {
+            this.setSaldo(this.getSaldo() - valor);
+        } else {
+            System.out.println("Por favor, digite um valor positivo e/ou menor ou igual ao saldo para transferir.");
+        }
     }
 
     public void transferir(double valor, int numAgenciaBancariaDestino, int numContaDestino){

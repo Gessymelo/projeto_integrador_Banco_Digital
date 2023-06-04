@@ -36,4 +36,13 @@ public class Registro {
     public void setTipoTransacao(String tipoTransacao) {
         this.tipoTransacao = tipoTransacao;
     }
+
+    @Override
+    public String toString() {
+        return "Registro{" +
+                "valor=" + valor +
+                ", data=" + data +
+                ", tipoTransacao='" + tipoTransacao + '\'' +
+                '}';
+    }
 }
