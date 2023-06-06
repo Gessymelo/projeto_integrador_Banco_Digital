@@ -48,8 +48,6 @@ public class Main {
                     InterfaceBankApp.render();
                     break;
                 case 7:
-                    //Administrador
-                case 8:
                     resp = InterfaceBankApp.confirmarSaida();
                     break;
                 default:

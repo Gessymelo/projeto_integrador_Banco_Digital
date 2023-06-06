@@ -16,7 +16,7 @@ public class InterfaceBankApp {
     static Scanner s = new Scanner(System.in);
     public static void exibirCabecalho(){
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        System.out.println("------------------- JavaBank App -------------------");
+        System.out.println("---------------------- BankApp ---------------------");
         System.out.println("\t Um banco para todas suas necessidades");
         System.out.println("----------------------------------------------------");
     }
@@ -27,8 +27,7 @@ public class InterfaceBankApp {
         System.out.println("[4] Transferir");
         System.out.println("[5] Consultar extrato");
         System.out.println("[6] Rendimentos");
-        System.out.println("[7] Acesso Restrito ao Administrador");
-        System.out.println("[8] Sair do sistema");
+        System.out.println("[7] Sair do sistema");
         System.out.printf("Digite umas das opções acima: ");
     }
 

@@ -92,7 +92,6 @@ public class AgenciaBancaria {
         }
     }
 
-
     public void adicionarCliente(String nome, String cpf, String email, LocalDate dataNascimento){
         this.setQtdClientes(this.getQtdClientes()+1);
         int idNovoCliente = this.getQtdClientes();
@@ -123,14 +122,6 @@ public class AgenciaBancaria {
     }
 
 
-    public void desativarClientePorCpf(String cpf){
-        // TODO: SEGUNDA UNIDADE
-    }
-
-    public void desativarClientePorIndex(int id){
-        // TODO: SEGUNDA UNIDADE
-    }
-
     public Conta encontrarContaPorNumConta(int numConta){
         Iterator<Conta> iterator = contas.iterator();
         while(iterator.hasNext()){
@@ -151,22 +142,6 @@ public class AgenciaBancaria {
             }
         }
         return null;
-    }
-
-    public void desativarContaPorNumConta(int numConta){
-        // TODO: SEGUNDA UNIDADE
-    }
-
-    public void desativarContaPorIndex(int id){
-        // TODO: SEGUNDA UNIDADE
-    }
-
-    public void listarTodasContas(){
-        // TODO: SEGUNDA UNIDADE
-    }
-
-    public void listarTodosclientes(){
-        // TODO: SEGUNDA UNIDADE
     }
 
     public int getNumAgencia() {

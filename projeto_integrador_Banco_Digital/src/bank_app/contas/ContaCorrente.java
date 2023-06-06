@@ -49,6 +49,8 @@ public class ContaCorrente extends Conta {
 
     public void cobrarJurosChequeEspecial(){
         if(this.getSaldo() < 0){
+
+            //Observação Math.abs
             this.setValorCobrancaChequeEspecial(Math.abs(this.getSaldo())*1.5);
         }
     }
